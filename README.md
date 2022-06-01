@@ -33,8 +33,8 @@ steps:
 ### 2.包含@scope，若@scope为"@cloud"
 .npmrc配置格式
 ```
-@cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxx_npm_0/
-//devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxx_npm_0/:_auth=(user:password).base64
+@cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/
+//devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/:_auth=(user:password).base64
 ```
 action中参数配置例子
 ```yml
@@ -42,9 +42,9 @@ steps:
 - uses: huaweicloud/npm-cloudartifact-action@v1.0.0
   with: 
     registry_list: |
-        @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/
+        @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/
     auth_list: |
-        //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/:_auth=${{ secrets.NPM_AUTH }}
+        //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/:_auth=${{ secrets.NPM_AUTH }}
 ```
 
 ## **CloudArtifact npm 私仓Workflow样例**
@@ -66,14 +66,20 @@ jobs:
         # 代码检出
       - uses: actions/checkout@v2
 
+        # GitHub Action环境默认nodejs版本为16，可以根据自己项目需求修改nodejs版本
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
         # 华为云CloudArtifact npm 私仓配置 
       - name: Setup HuaweiCloud npm CloudArtifact
         uses: huaweicloud/npm-cloudartifact-action@v1.0.0
         with: 
           registry_list: |
-            @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/
+            @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/
           auth_list: |
-            //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/:_auth=${{ secrets.NPM_AUTH }}
+            //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/:_auth=${{ secrets.NPM_AUTH }}
             
         # 推送npm二进制包到华为云CloudArtifact npm 私仓
       - name: publish npm package 
@@ -106,15 +112,21 @@ jobs:
         # 代码检出
       - uses: actions/checkout@v2
 
+        # GitHub Action环境默认nodejs版本为16，可以根据自己项目需求修改nodejs版本
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
         # 华为云CloudArtifact npm 私仓配置 
       - name: Setup HuaweiCloud npm CloudArtifact
         uses: huaweicloud/npm-cloudartifact-action@v1.0.0
         with: 
           registry_list: |
             registry=https://registry.npmjs.org/
-            @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/
+            @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/
           auth_list: |
-            //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/:_auth=${{ secrets.NPM_AUTH }}
+            //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/:_auth=${{ secrets.NPM_AUTH }}
             
         # 拉取CloudArtifact npm 私仓的npm package
       - name: install npm package 
