@@ -1,0 +1,31 @@
+name: npm Cloudartifact Action Publish Demo
+on:
+  push:
+    branches:
+       master
+jobs:
+  Publish-to-CloudArtifact-npm:
+    runs-on: ubuntu-latest
+    steps:
+        # 代码检出
+      - uses: actions/checkout@v2
+
+        # GitHub Action环境默认nodejs版本为16，可以根据自己项目需求修改nodejs版本
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+        # 华为云CloudArtifact npm 私仓配置 
+      - name: Setup HuaweiCloud npm CloudArtifact
+        uses: huaweicloud/npm-cloudartifact-action@v1.0.0
+        with: 
+          registry_list: |
+            @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/
+          auth_list: |
+            //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repp_name}}/:_auth=${{ secrets.NPM_AUTH }}
+            
+        # 推送npm二进制包到华为云CloudArtifact npm 私仓
+      - name: publish npm package 
+        run: |
+          npm publish
