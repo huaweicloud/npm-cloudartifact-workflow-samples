@@ -47,3 +47,44 @@ steps:
         //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/:_auth=${{ secrets.NPM_AUTH }}
 ```
 
+## **CloudArtifact npm 私仓Workflow样例**
+### 1.npm publish 推送npm package到 CloudArtifact npm 私仓 
+步骤说明：  
+(1)代码检出 
+(2)华为云CloudArtifact npm 私仓配置  
+(3)npm publish 推送npm package到 CloudArtifact npm 私仓
+```yaml
+name: npm Cloudartifact Action Publish Demo
+on:
+  push:
+    branches:
+       master
+jobs:
+  Publish-to-CloudArtifact-npm:
+    runs-on: ubuntu-latest
+    steps:
+        # 代码检出
+      - uses: actions/checkout@v2
+
+        # 华为云CloudArtifact npm 私仓配置 
+      - name: Setup HuaweiCloud npm CloudArtifact
+        uses: huaweicloud/npm-cloudartifact-action@v1.0.0
+        with: 
+          registry_list: |
+              @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/
+          auth_list: |
+              //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/:_auth=${{ secrets.NPM_AUTH }}
+            
+        # 推送npm二进制包到华为云CloudArtifact npm 私仓
+      - name: publish npm package 
+        run: |
+          npm install
+```   
+>【注意】  
+> 1.加上要推送的npm package名称为:@cloud/vue-demo (见本仓库package.json文件中name的取值内容)  
+> 2.私有依赖库CloudArtifact中npm私仓路径必须包含改@scope
+> ![npm-repo-scope](imgs/npm-repo-scope.PNG)  
+> 3.action参数registry_list包含@cloud的npm仓库
+> 4.使用到账号密码等敏感信息，建议将参数内容设置在GITHUB的Settings->Secrets->Actions
+
+### 2.npm install 拉取CloudArtifact npm 私仓的npm package 

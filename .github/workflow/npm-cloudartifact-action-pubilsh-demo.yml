@@ -1,0 +1,25 @@
+name: npm Cloudartifact Action Publish Demo
+on:
+  push:
+    branches:
+       master
+jobs:
+  Publish-to-CloudArtifact-npm:
+    runs-on: ubuntu-latest
+    steps:
+        # 代码检出
+      - uses: actions/checkout@v2
+
+        # 华为云CloudArtifact npm 私仓配置 
+      - name: Setup HuaweiCloud npm CloudArtifact
+        uses: huaweicloud/npm-cloudartifact-action@v1.0.0
+        with: 
+          registry_list: |
+              @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/
+          auth_list: |
+              //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/cn-north-4_xxxxx_npm_0/:_auth=${{ secrets.NPM_AUTH }}
+            
+        # 推送npm二进制包到华为云CloudArtifact npm 私仓
+      - name: publish npm package 
+        run: |
+          npm install
