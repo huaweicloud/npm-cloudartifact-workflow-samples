@@ -15,7 +15,8 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            /* Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+
+            /** Since sass-loader (weirdly) has SCSS as its default parse mode, we map
                the "scss" and "sass" values for the lang attribute to the right configs here.
                other preprocessors should work out of the box, no loader config like this necessary. */
             'css': 'vue-style-loader!css-loader',
