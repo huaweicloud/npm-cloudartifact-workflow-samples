@@ -1,5 +1,5 @@
-# 使用华为云CloudArtifact npm 私仓Workflow样例
-**本READEME指导是基于[npm CloudArtifact Action](https://github.com/marketplace/actions/huaweicloud-npm-cloudartifact)使用华为云CloudArtifact npm 私仓Workflow样例**   
+# 使用华为云CloudArtifact npm 私仓workflows样例
+**本READEME指导是基于[npm CloudArtifact Action](https://github.com/marketplace/actions/huaweicloud-npm-cloudartifact)使用华为云CloudArtifact npm 私仓Workflows样例**   
   
 私有依赖库(CloudArtifact)是发布服务（[CloudRelease](https://support.huaweicloud.com/cloudrelease/index.html)）的语言软件仓库功能。用于管理私有组件（开发者通俗称之为私服），包括Maven、Npm、Go、PyPI、Rpm等多种仓库格式。   
 使用华为云CloudArtifact npm 私仓有如下场景：  
@@ -50,7 +50,7 @@ steps:
         //devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repo_name}}/:_auth=${{ secrets.NPM_AUTH }}
 ```
 
-## **CloudArtifact npm 私仓Workflow样例**
+## **CloudArtifact npm 私仓workflows样例**
 ### 1.npm publish: 推送npm package到 CloudArtifact npm 私仓 
 步骤说明：  
 (1)代码检出   
@@ -89,7 +89,7 @@ jobs:
         run: |
           npm publish
 ```   
-详情可参考 ./github/workflow/npm-cloudartifact-action-pubilsh-demo.yml
+详情可参考 ./github/workflows/npm-cloudartifact-action-publish-demo.yml
 >【注意】  
 > 1.此样例假设要推送的npm package名称为:@cloud/vue-demo (即本仓库package.json文件中name值)  
 > 2.私有依赖库CloudArtifact中npm私仓路径必须包含@cloud
@@ -109,7 +109,7 @@ on:
     branches:
        master
 jobs:
-  Publish-to-CloudArtifact-npm:
+  Install-CloudArtifact-npm:
     runs-on: ubuntu-latest
     steps:
         # 代码检出
@@ -136,7 +136,7 @@ jobs:
         run: |
           npm install
 ```
-详情可参考 ./github/workflow/npm-cloudartifact-action-install-demo.yml
+详情可参考 ./github/workflows/npm-cloudartifact-action-install-demo.yml
 >【注意】  
 > 1.npm仓库存在npm package @cloud/vue-demo   
 > 2.action参数registry_list包含@cloud的npm仓库  
