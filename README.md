@@ -137,6 +137,5 @@ jobs:
 详情可参考 ./github/workflow/npm-cloudartifact-action-install-demo.yml
 >【注意】  
 > 1.npm仓库存在npm package @cloud/vue-demo   
-> 2.package.json文件中name与要下载的npm package名称不能一致  
-> 3.action参数registry_list包含@cloud的npm仓库  
-> 4.使用到账号密码等敏感信息，建议将参数内容设置在GITHUB的Settings->Secrets->Actions
+> 2.action参数registry_list包含@cloud的npm仓库  
+> 3.使用到账号密码等敏感信息，建议将参数内容设置在GITHUB的Settings->Secrets->Actions
