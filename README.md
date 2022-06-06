@@ -1,4 +1,6 @@
 # 使用华为云CloudArtifact npm 私仓Workflow样例
+**本READEME指导是基于[npm CloudArtifact Action](https://github.com/marketplace/actions/huaweicloud-npm-cloudartifact)使用华为云CloudArtifact npm 私仓Workflow样例**   
+  
 私有依赖库(CloudArtifact)是发布服务（[CloudRelease](https://support.huaweicloud.com/cloudrelease/index.html)）的语言软件仓库功能。用于管理私有组件（开发者通俗称之为私服），包括Maven、Npm、Go、PyPI、Rpm等多种仓库格式。   
 使用华为云CloudArtifact npm 私仓有如下场景：  
 1.npm publish 推送npm package到 CloudArtifact npm 私仓   
