@@ -76,7 +76,7 @@ jobs:
           node-version: 16
 
         # 华为云CloudArtifact npm 私仓配置 
-      - name: Setup HuaweiCloud npm CloudArtifact
+      - name: Setup Huawei Cloud npm CloudArtifact
         uses: huaweicloud/npm-cloudartifact-action@v1.0.0
         with: 
           registry_list: |
@@ -122,7 +122,7 @@ jobs:
           node-version: 16
 
         # 华为云CloudArtifact npm 私仓配置 
-      - name: Setup HuaweiCloud npm CloudArtifact
+      - name: Setup Huawei Cloud npm CloudArtifact
         uses: huaweicloud/npm-cloudartifact-action@v1.0.0
         with: 
           registry_list: |
@@ -141,3 +141,16 @@ jobs:
 > 1.npm仓库存在npm package @cloud/vue-demo   
 > 2.action参数registry_list包含@cloud的npm仓库  
 > 3.使用到账号密码等敏感信息，建议将参数内容设置在GITHUB的Settings->Secrets->Actions
+
+## 公网域名说明
+```
+npm官方镜像源: 'https://registry.npmjs.org'
+Core Docs: 'https://vuejs.org'
+Forum: 'https://forum.vuejs.org'
+Gitter Chat: 'https://gitter.im/vuejs/vue'
+Twitter: 'https://twitter.com/vuejs'
+vue-router: 'http://router.vuejs.org'
+vue: 'http://vuex.vuejs.org'
+vue-loader: 'http://vue-loader.vuejs.org'
+awesome-vue: 'https://github.com/vuejs/awesome-vue' 
+```
