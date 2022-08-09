@@ -18,7 +18,7 @@ jobs:
 
         # 华为云CloudArtifact npm 私仓配置 
       - name: Setup Huawei Cloud npm CloudArtifact
-        uses: huaweicloud/npm-cloudartifact-action@v1.0.0
+        uses: huaweicloud/npm-cloudartifact-action@v1.1.0
         with: 
           registry_list: |
             registry=https://registry.npmjs.org/

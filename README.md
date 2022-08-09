@@ -26,7 +26,7 @@ _auth=(user:password).base64  # 用户名和密码中间用冒号隔开，通过
 action中参数配置例子
 ```yml
 steps:
-- uses: huaweicloud/npm-cloudartifact-action@v1.0.0
+- uses: huaweicloud/npm-cloudartifact-action@v1.1.0
   with: 
     registry_list: |
         registry=https://some.npm.registry/
@@ -42,7 +42,7 @@ steps:
 action中参数配置例子
 ```yml
 steps:
-- uses: huaweicloud/npm-cloudartifact-action@v1.0.0
+- uses: huaweicloud/npm-cloudartifact-action@v1.1.0
   with: 
     registry_list: |
         @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repo_name}}/
@@ -77,7 +77,7 @@ jobs:
 
         # 华为云CloudArtifact npm 私仓配置 
       - name: Setup Huawei Cloud npm CloudArtifact
-        uses: huaweicloud/npm-cloudartifact-action@v1.0.0
+        uses: huaweicloud/npm-cloudartifact-action@v1.1.0
         with: 
           registry_list: |
             @cloud:registry=https://devrepo.devcloud.cn-north-4.huaweicloud.com/artgalaxy/api/npm/{{repo_name}}/
@@ -123,7 +123,7 @@ jobs:
 
         # 华为云CloudArtifact npm 私仓配置 
       - name: Setup Huawei Cloud npm CloudArtifact
-        uses: huaweicloud/npm-cloudartifact-action@v1.0.0
+        uses: huaweicloud/npm-cloudartifact-action@v1.1.0
         with: 
           registry_list: |
             registry=https://registry.npmjs.org/
@@ -142,15 +142,13 @@ jobs:
 > 2.action参数registry_list包含@cloud的npm仓库  
 > 3.使用到账号密码等敏感信息，建议将参数内容设置在GITHUB的Settings->Secrets->Actions
 
-## 公网域名说明
-```
-npm官方镜像源: 'https://registry.npmjs.org'
-Core Docs: 'https://vuejs.org'
-Forum: 'https://forum.vuejs.org'
-Gitter Chat: 'https://gitter.im/vuejs/vue'
-Twitter: 'https://twitter.com/vuejs'
-vue-router: 'http://router.vuejs.org'
-vue: 'http://vuex.vuejs.org'
-vue-loader: 'http://vue-loader.vuejs.org'
-awesome-vue: 'https://github.com/vuejs/awesome-vue' 
-```
+## workflow sample中使用公网地址说明
+1. [npm官方镜像源](https://registry.npmjs.org)  
+2. 代码demo使用 [Core Docs](https://vuejs.org)  
+3. 代码demo使用 [Forum](https://forum.vuejs.org)  
+4. 代码demo使用 [Gitter Chat](https://gitter.im/vuejs/vue)  
+5. 代码demo使用 [Twitter](https://twitter.com/vuejs)  
+6. 代码demo使用 [vue-router](http://router.vuejs.org)  
+7. 代码demo使用 [vue](http://vuex.vuejs.org)  
+8. 代码demo使用 [vue-loader](http://vue-loader.vuejs.org)  
+9. 代码demo使用 [awesome-vue](https://github.com/vuejs/awesome-vue)   
